@@ -3,39 +3,23 @@ using System.Collections;
 using TouchScript;
 
 public class FieldContextHandler : MonoBehaviour {
-
-	private void OnEnable()
-	{
-		if (TouchManager.Instance != null)
-		{
-			TouchManager.Instance.TouchesBegan += touchesBeganHandler;
-		}
-	}
-
-	private void OnDisable()
-	{
-		if (TouchManager.Instance != null)
-		{
-			TouchManager.Instance.TouchesBegan -= touchesBeganHandler;
-		}
-	}
-
 //	public float speed = 0.1F;
 //	// Update is called once per frame
-//	void Update () {
-//		if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Moved) {
-//			// Get movement of the finger since last frame
-//			Vector2 touchDeltaPosition = Input.GetTouch(0).deltaPosition;
-//			// Move object across XY plane
-//			transform.Translate(-touchDeltaPosition.x * speed, -touchDeltaPosition.y * speed, 0);
-//		}
-//	}
+	public GameObject cornPrefab;
 
-	private void touchesBeganHandler(object sender, TouchEventArgs e)
-	{
-		foreach (var point in e.Touches)
-		{
-			Debug.Log(point.Tags + " touched down at " + point.Position);
+	void Update () {
+		if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began) {
+			// Get movement of the finger since last frame
+			//Vector2 touchDeltaPosition = Input.GetTouch(0).deltaPosition;
+			// Move object across XY plane
+			//transform.Translate(-touchDeltaPosition.x * speed, -touchDeltaPosition.y * speed, 0);
+			transform.Find("Canvas").gameObject.SetActive(true);
 		}
+	}
+
+	public void OnClickCorn() {
+		transform.Find("Canvas").gameObject.SetActive(false);
+		GameObject cornObject = Instantiate(cornPrefab, new Vector3(transform.position.x,transform.position.y, transform.position.z), Quaternion.identity) as GameObject;
+		cornObject.transform.parent = gameObject.transform;
 	}
 }
