@@ -43,7 +43,15 @@ public class FieldContextHandler : MonoBehaviour {
 
 	private void tapHandler(object sender, EventArgs e)
 	{
-		transform.Find("Canvas").gameObject.SetActive(true);
+		var canvas = transform.Find("Canvas").gameObject;
+		canvas.SetActive(true);
+//		var cornFieldTransform = transform.Find("Corn Field");
+//		if(canvas.activeInHierarchy == false) {
+//			
+//		}
+//		if(cornFieldTransform != null) {
+//			canvas.SetActive(false);
+//		}
 	}
 
 
