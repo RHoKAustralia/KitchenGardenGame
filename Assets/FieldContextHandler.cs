@@ -8,6 +8,8 @@ public class FieldContextHandler : MonoBehaviour {
 //	public float speed = 0.1F;
 //	// Update is called once per frame
 	public GameObject cornPrefab;
+	public GameObject radishPrefab;
+	public GameObject tomatoPrefab;
 
 //	void Update () {
 //		if(Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began) {
@@ -58,6 +60,18 @@ public class FieldContextHandler : MonoBehaviour {
 	public void OnClickCorn() {
 		transform.Find("Canvas").gameObject.SetActive(false);
 		GameObject cornObject = Instantiate(cornPrefab, new Vector3(transform.position.x,transform.position.y, transform.position.z), Quaternion.identity) as GameObject;
+		cornObject.transform.parent = gameObject.transform;
+	}
+
+	public void OnClickTomato() {
+		transform.Find("Canvas").gameObject.SetActive(false);
+		GameObject cornObject = Instantiate(tomatoPrefab, new Vector3(transform.position.x,transform.position.y, transform.position.z), Quaternion.identity) as GameObject;
+		cornObject.transform.parent = gameObject.transform;
+	}
+
+	public void OnClickRadish() {
+		transform.Find("Canvas").gameObject.SetActive(false);
+		GameObject cornObject = Instantiate(radishPrefab, new Vector3(transform.position.x,transform.position.y, transform.position.z), Quaternion.identity) as GameObject;
 		cornObject.transform.parent = gameObject.transform;
 	}
 }
