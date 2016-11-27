@@ -4,19 +4,25 @@ using System.Collections.Generic;
 
 public class snailScript : MonoBehaviour {
     public Transform target;
-    public float speed;
+    private float speed = 0.1f;
 
-	private GameObject field;
+	private GameObject plant;
 	// Use this for initialization
 	void Start () {
-		field = GameObject.Find("Field");
+		
 	}
 
 	// Update is called once per frame
     void Update ()
-	{
-		if(field) {
-			transform.position = Vector3.Lerp(transform.position, field.transform.position, Time.time / 100);
+	{	
+		if(plant == null || plant.activeInHierarchy==false) {
+			GameObject[] plants = GameObject.FindGameObjectsWithTag("Plant");
+			if(plants.Length > 0) {
+				plant = plants[Random.Range(0, plants.Length)];
+			}
+		}
+		if(plant) {
+			transform.position = Vector3.Lerp(transform.position, plant.transform.position, Time.deltaTime * speed);
 		}
     }
 }

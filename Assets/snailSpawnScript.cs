@@ -4,46 +4,29 @@ using System.Collections.Generic;
 
 public class snailSpawnScript : MonoBehaviour {
 
-public GameObject snail;
-//public GameObject inspection : GameObject;
+	public GameObject snail;
 
-public float spawnTime = 1.0f;
-Vector3 spawnPoint;
+	public float spawnRepeatTime = 2.0f;
+	public float randomXAmount = 10.0f;
+	public float randomZAmount = 10.0f;
+	Vector3 spawnPoint;
 
-void Start () {
+	void Start () {
+		InvokeRepeating("addSnail", 0.0f, spawnRepeatTime);
+	}
 
-	InvokeRepeating("addSnail", 0.0f, 0.4f);
-	Debug.Log("hammmmm");
+		
+	void addSnail () {
+		var xPosition = Random.Range(transform.position.x - randomXAmount, transform.position.x + randomXAmount);
+		var zPosition = Random.Range(transform.position.z - randomZAmount, transform.position.z + randomZAmount);
+		spawnPoint = new Vector3(xPosition,transform.position.y,zPosition);
 
-}
+		Instantiate(snail, spawnPoint, Quaternion.identity);
+	}
 
-	
-void addSnail () {
+	void Update () {
 
-Debug.Log("fefsdf");
-//var rd = GetComponent(Renderer);
-//	var x1 = transform.position.x - rd.bounds.size.x/2;
-//	var x2 = transform.position.x + rd.bounds.size.x/2;
+		
 
-	spawnPoint = new Vector3(transform.position.x,transform.position.y,transform.position.z);
-
-	Instantiate(snail, spawnPoint, Quaternion.identity);
-}
-
-/*function addInspection() {
-var rd = GetComponent(Renderer);
-	//var x1 = transform.position.x - rd.bounds.size.x/2;
-	//var x2 = transform.position.x + rd.bounds.size.x/2;
-
-
-	var spawnPoint2 = Vector2(Random.Range(-4,4), Random.Range(-4, 4));
-	Instantiate(inspection, spawnPoint2, Quaternion.identity);
-
-}*/
-
-void Update () {
-
-	
-
-}
+	}
 }
