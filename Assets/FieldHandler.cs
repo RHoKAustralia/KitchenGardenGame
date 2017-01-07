@@ -4,6 +4,7 @@ using System.Collections;
 public class FieldHandler : MonoBehaviour {
 
 	GameObject cornField;
+
 	// Use this for initialization
 	void Start () {
 		cornField = gameObject.transform.Find("Corn Field").gameObject;
